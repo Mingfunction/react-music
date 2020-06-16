@@ -1,0 +1,23 @@
+.nav_warpper {
+  .nav_title {
+    padding: 6px;
+  }
+  .r_nav_li_item {
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border-left: 3px solid transparent;
+    &:hover {
+      border-left: 3px solid #333333;
+      color: #000000;
+    }
+  }
+  .r_nav_li_item_active {
+    padding: 8px 16px;
+    border-left: 3px solid #333333;
+    transition: border 1s linear;
+    cursor: pointer;
+    color: #000000;
+    background: #dfdfdf;
+  }
+}

@@ -1,0 +1,82 @@
+.header_frame {
+  color: #74b1be;
+  background-color: #2f3241;
+  border-bottom: 1px solid #e8e8e8;
+  border-bottom-color: #1a1b23;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 12px;
+  padding-right: 12px;
+  overflow: hidden;
+  // 设置该元素可拖动窗口
+  // 会影响子元素的点击事件 所有下面的设置不可以拖动
+  -webkit-app-region: drag;
+}
+.input_warpper {
+  float: left;
+  height: 38px;
+  line-height: 38px;
+  -webkit-app-region: no-drag;
+  > input {
+    border-color: #74b1be;
+    line-height: 1;
+    width: 200px;
+    font-size: 12px;
+    border-radius: 30px;
+    background: #2f3241;
+    color: #74b1be;
+  }
+  input::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: #74b1be;
+  }
+}
+.header_logo_warpper {
+  float: left;
+  transition: all 0.3s;
+  -webkit-app-region: no-drag;
+}
+.site_header_logo {
+  cursor: pointer;
+  // 设置不可拖动
+  -webkit-app-region: no-drag;
+  img {
+    width: 38px;
+    height: 38px;
+    vertical-align: middle;
+
+    margin-right: 12px;
+  }
+  svg {
+    vertical-align: middle;
+  }
+}
+.routettt_bt_warpper {
+  float: left;
+  line-height: 32px;
+  height: 38px;
+  -webkit-app-region: no-drag;
+  margin: 0 16px;
+  .routettt_bt {
+    background: transparent;
+    line-height: 1;
+    border: none;
+    cursor: pointer;
+  }
+}
+.set_frame {
+  -webkit-app-region: no-drag;
+  width: 300px;
+  float: right;
+  line-height: 38px;
+  font-size: 20px;
+  text-align: right;
+  i {
+    margin: 0 4px;
+    color: #1a1b23;
+  }
+  span {
+    margin: 0 4px;
+    cursor: pointer;
+  }
+}
