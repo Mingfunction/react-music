@@ -23,6 +23,15 @@ module.exports = merge(common, {
     hot: true,
     // 启用热模块替换，而不会在构建失败时将页面刷新作为后备。
     // hotOnly: true
+    proxy: {
+      "/api": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+        pathRewrite: {
+          "^/api": "",
+        },
+      },
+    },
   },
   module: {
     rules: [

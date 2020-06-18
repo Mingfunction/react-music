@@ -1,3 +1,42 @@
 .find_page {
   height: 1000px;
+  padding: 0 36px;
+  .find_nav_warpper {
+    min-width: 720px;
+    margin: 0 auto;
+    height: 42px;
+    border-bottom: 1px solid rgba($color: #999999, $alpha: 0.2);
+    line-height: 42px;
+    text-align: center;
+    margin-bottom: 12px;
+    position: relative;
+    .find_nav {
+      float: left;
+      margin: 0 auto;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      .find_nav_item {
+        float: left;
+        text-align: center;
+        padding: 0 12px;
+        cursor: pointer;
+        border-bottom: 1px solid transparent;
+        color: #333333;
+      }
+      .find_nav_item_active {
+        float: left;
+        text-align: center;
+        padding: 0 12px;
+        cursor: pointer;
+        color: #cc0000;
+        border-bottom: 1px solid #cc0000;
+      }
+    }
+  }
+  .find_container_warp {
+    width: 1090px;
+    margin: 0 auto;
+    height: 300px;
+  }
 }

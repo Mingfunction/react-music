@@ -1,0 +1,13 @@
+.grid {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  > div {
+    width: 18%;
+    // background: #000;
+    margin-bottom: 28px;
+    img {
+      width: 100%;
+    }
+  }
+}

@@ -1,5 +1,14 @@
+/*
+ * @Author: Min
+ * @Date: 2020-06-16 12:00:39
+ * @LastEditors: Min
+ * @LastEditTime: 2020-06-18 15:43:42
+ * @Description: 顶部header
+ */
+
 import React, { useState, memo } from "react";
 import styles from "./style.module.scss";
+import Github from "./github";
 
 const hover = "hover_bt";
 
@@ -34,6 +43,9 @@ function HeaderFrame() {
         )}
 
         <span className={hover}></span>
+        <a href="https://github.com/Mingfunction/react-music">
+          <Github />
+        </a>
       </div>
     </header>
   );

@@ -2,8 +2,8 @@ import React, { PureComponent, ReactNode } from "react";
 import styles from "./nav.module.scss";
 
 interface NavProps {
-  key?: number;
   onCilck?: (key: string) => void;
+  defaultkey?: string;
   title?: string;
   readonly children?: ReactNode;
 }
@@ -17,6 +17,7 @@ const NavActive = React.createContext({});
 
 class NavItem extends PureComponent<NavItemProps> {
   static contextType = NavActive;
+
   render() {
     const { key, setKey } = this.context;
     const { keys } = this.props;
@@ -35,10 +36,11 @@ class NavItem extends PureComponent<NavItemProps> {
 
 class Nav extends PureComponent<NavProps, {}> {
   state = {
-    key: this.props.key,
+    key: this.props.defaultkey,
   };
+
   setKey = (key: string) => {
-    this.props.onCilck(key);
+    this.props.onCilck && this.props.onCilck(key);
     this.setState({ key });
   };
 
@@ -46,6 +48,7 @@ class Nav extends PureComponent<NavProps, {}> {
 
   render() {
     const { title, children } = this.props;
+
     return (
       <NavActive.Provider value={{ key: this.state.key, setKey: this.setKey }}>
         <div className={styles.nav_warpper}>

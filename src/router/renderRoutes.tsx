@@ -9,7 +9,7 @@ interface IProps {
     strict?: any;
     render?: () => React.FC;
     requiresAuth?: string;
-    component?: React.FC;
+    component: React.FC;
   }[];
   authed?: any;
   authPath?: string;
@@ -18,6 +18,7 @@ interface IProps {
 }
 
 const renderRoutes = (props: IProps) => {
+  // console.log(props);
   const {
     routes,
     authed,
