@@ -7,3 +7,10 @@
 # Description: 公共方法
 #
 ============================================================================= */
+
+export class Carousel {
+  box: Element;
+  constructor(box) {
+    this.box = box;
+  }
+}

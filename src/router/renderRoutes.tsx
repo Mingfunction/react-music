@@ -1,3 +1,12 @@
+/* ============================================================================= 
+#
+# Author: Min
+# Date: 2020-06-19 10:50:04
+# LastEditors: Min
+# LastEditTime: 2020-06-19 11:04:41
+# Description: 路由权鉴
+#
+============================================================================= */
 import React from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 

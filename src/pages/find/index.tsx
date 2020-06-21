@@ -2,7 +2,7 @@
  * @Author: Min
  * @Date: 2020-06-16 16:55:05
  * @LastEditors: Min
- * @LastEditTime: 2020-06-18 18:50:51
+ * @LastEditTime: 2020-06-20 18:50:51
  * @Description: file content
  */
 
@@ -19,8 +19,9 @@ function Find(props: FindProps) {
   const {
     route: { routes },
   } = props;
-  const [current, setCurrent] = useState<string>("discovery");
-
+  const [current, setCurrent] = useState<string>(
+    props.history.location.pathname.split("/")[2]
+  );
   const navArr = [
     { text: "个性推荐", value: "discovery" },
     { text: "歌单", value: "songlist" },

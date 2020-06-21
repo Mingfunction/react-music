@@ -2,11 +2,70 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+
   > div {
     width: 18%;
-    // background: #000;
+    position: relative;
     margin-bottom: 28px;
+    cursor: pointer;
+    overflow: hidden;
+
+    .copywriter {
+      position: absolute;
+      top: -50px;
+      width: 100%;
+      color: #ffffff;
+      line-height: 25px;
+      box-sizing: border-box;
+      padding: 4px;
+      font-size: 4px;
+      background: rgba(#000000, 0.7);
+      transition: all 0.3s;
+    }
+    .num_of_palys {
+      position: absolute;
+      top: 0;
+      text-align: right;
+      font-size: 12px;
+      width: 100%;
+      height: 20px;
+      line-height: 20px;
+      padding: 0 8px;
+      box-sizing: border-box;
+      color: #ffffff;
+      background: linear-gradient(left, rgba(#ffffff, 0), rgba(#000000, 0.6));
+    }
+    > div {
+      width: 100%;
+      position: relative;
+      &:hover {
+        .num_of_palys {
+          display: none;
+        }
+        .copywriter {
+          top: 0;
+        }
+        .player {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+      .player {
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        bottom: 6px;
+        right: 6px;
+        width: 28px;
+        height: 28px;
+        border: 1px solid #ffffff;
+        border-radius: 50%;
+        transition: all 0.3s;
+        background: rgba(#000000, 0.3);
+      }
+    }
     img {
+      vertical-align: middle;
       width: 100%;
     }
   }

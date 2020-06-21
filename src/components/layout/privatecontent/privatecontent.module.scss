@@ -1,0 +1,19 @@
+.privatecontent {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  > div {
+    width: 32%;
+    cursor: pointer;
+    img {
+      width: 100%;
+    }
+  }
+}
+.privatecontent div:nth-child(2) {
+  padding-right: 2%;
+}
+.privatecontent div:nth-child(1) {
+  padding-right: 2%;
+}

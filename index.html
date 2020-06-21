@@ -1,0 +1,224 @@
+<!--
+ * @Author: Min
+ * @Date: 2020-06-19 22:38:03
+ * @LastEditors: Min
+ * @LastEditTime: 2020-06-19 23:08:11
+ * @Description: file content
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .banner_warpper {
+        width: 540px;
+        height: 200px;
+        position: relative;
+        overflow: hidden;
+      }
+      .banner_warpper img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="banner_warpper">
+      <div>
+        <img
+          src="http://p1.music.126.net/6Ct2PT0ZoHxVSm8E-F1cTQ==/109951165072729778.jpg"
+          alt=""
+        />
+        <img
+          src="http://p1.music.126.net/Vt6BbNlslyiFbGbl8yGd7g==/109951165072757237.jpg"
+          alt=""
+        />
+        <img
+          src="http://p1.music.126.net/eA6hTakJ4ihkGeJOW2pPEQ==/109951165073857187.jpg"
+          alt=""
+        />
+      </div>
+      <div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
+    <script>
+      const json = [
+        "http://p1.music.126.net/6Ct2PT0ZoHxVSm8E-F1cTQ==/109951165072729778.jpg",
+        "http://p1.music.126.net/6Ct2PT0ZoHxVSm8E-F1cTQ==/109951165072729778.jpg",
+        "http://p1.music.126.net/RsiU-036bUGX9qbk24OHEQ==/109951165072754004.jpg",
+        "http://p1.music.126.net/_zrsQDIAk0OBZblrOLr_4Q==/109951165073331138.jpg",
+        "http://p1.music.126.net/ut38rV6FOzVODdrf-mGlbQ==/109951165073842836.jpg",
+        "http://p1.music.126.net/cSkh9pThhEZUvnBwBABfCQ==/109951165072775161.jpg",
+        "http://p1.music.126.net/eA6hTakJ4ihkGeJOW2pPEQ==/109951165073857187.jpg",
+        "http://p1.music.126.net/Vt6BbNlslyiFbGbl8yGd7g==/109951165072757237.jpg",
+        "http://p1.music.126.net/YUTu8g7xe8CNppPE2op7lA==/109951165073910993.jpg",
+        "http://p1.music.126.net/NsF0neZIChmMgA5B6yvGug==/109951165072811760.jpg",
+      ];
+
+      function Carousel(box) {
+        this.box = box;
+        this.show = this.box.children[0].children;
+        this.index = this.box.children[1].children;
+        this.direction = this.box.children[2].children;
+        this.toplimit = this.show.length;
+        this.differ = null; //差值
+        this.flag = false;
+        this.now = 0;
+        this.init();
+      }
+      Carousel.prototype = {
+        init: function () {
+          this.initElement();
+          //一定要加上不然，右箭头时很难清除，左箭头时清不了
+          this.timer = window.setTimeout(() => {
+            this.beginTimer(this.directions, 1);
+          }, 2500);
+          this.directionEvent();
+          this.indexEvents();
+        },
+        initElement: function () {
+          //初始化元素
+          for (let i = 1; i < this.show.length; i++) {
+            this.show[i].style["left"] = "100%";
+          }
+          this.show[this.now].style["left"] = "0%";
+          this.show[this.show.length - 1].style["left"] = "-100%";
+        },
+        /**
+         *  @param goWhere 左右方向函数
+         *  @param process 定时器延时
+         *  @param k 速度倍数
+         */
+        beginTimer: function (goWhere, process, k) {
+          //坑： 清除 右击事件 第一个setTimeout中的beginTimer;
+          this.timer = window.setInterval(goWhere.bind(this, k), process);
+        },
+        /**
+         * @param x 速度倍数
+         */
+        directions: function (x) {
+          let k = x ? x : (x = 1);
+          let num = this.now + 1 < this.toplimit ? this.now + 1 : 0; //优化，判断一次就可以
+          this.show[this.now].style["left"] =
+            parseFloat(this.show[this.now].style["left"]) - k * 1 + "%";
+          this.show[num].style["left"] =
+            parseFloat(this.show[num].style["left"]) - k * 1 + "%";
+          if (parseFloat(this.show[num].style["left"]) === 0) {
+            //console.log(num)
+            this.show[
+              this.now - 1 >= 0 ? this.now - 1 : this.toplimit - 1
+            ].style["left"] = "100%";
+            this.now < this.toplimit - 1 ? this.now++ : (this.now = 0);
+            if (this.differ) {
+              this.differ--;
+              if (this.differ === 0) {
+                window.clearInterval(this.timer);
+                this.waitTimer();
+              }
+            } else {
+              window.clearInterval(this.timer);
+              this.waitTimer();
+            }
+            this.discoloration(); //下标
+          }
+        },
+        /**
+         * @param x 速度倍数
+         */
+        reversedirection: function (x) {
+          let k = x ? x : 1;
+          let num = this.now - 1 >= 0 ? this.now - 1 : this.toplimit - 1;
+          let num2 = num - 1 >= 0 ? num - 1 : this.toplimit - 1;
+          this.show[this.now].style["left"] =
+            parseFloat(this.show[this.now].style["left"]) + k * 1 + "%";
+          this.show[num].style["left"] =
+            parseFloat(this.show[num].style["left"]) + k * 1 + "%";
+          if (parseFloat(this.show[this.now].style["left"]) === 100) {
+            this.show[num2].style["left"] = "-100%";
+            //坑： this.now-1>=0 如果只大于0; now==1 时now = length-1;
+            this.now - 1 >= 0 ? this.now-- : (this.now = this.toplimit - 1);
+            if (this.differ) {
+              this.differ++;
+              if (this.differ === 0) {
+                window.clearInterval(this.timer);
+                this.waitTimer();
+              }
+            } else {
+              window.clearInterval(this.timer);
+              this.waitTimer();
+            }
+            this.discoloration(); //下标
+          }
+        },
+        waitTimer: function () {
+          this.timer = window.setInterval(this.changeImg.bind(this), 2000);
+        },
+        changeImg: function () {
+          window.clearInterval(this.timer); //清楚等待定时器
+          this.beginTimer(this.directions, 1);
+        },
+        directionEvent: function () {
+          this.direction[0].addEventListener(
+            "click",
+            this.directionEventLeft.bind(this)
+          );
+          this.direction[1].addEventListener(
+            "click",
+            this.directionEventRight.bind(this)
+          );
+        },
+        directionEventLeft: function () {
+          if (parseFloat(this.show[this.now].style["left"]) == 0) {
+            window.clearInterval(this.timer);
+            this.beginTimer(this.reversedirection, 1);
+            //坑： 清除 右击事件 第一个setTimeout中的beginTimer;
+          }
+        },
+        directionEventRight: function () {
+          if (parseFloat(this.show[this.now].style["left"]) == 0) {
+            window.clearInterval(this.timer);
+            this.beginTimer(this.directions, 1);
+            //坑： 清除 右击事件 第一个setTimeout中的beginTimer;
+          }
+        },
+        discoloration: function () {
+          for (let i = 0; i < this.index.length; i++) {
+            this.index[i].style.backgroundColor = "rgba(255, 255, 255,0.5)";
+          }
+          this.index[this.now].style.backgroundColor = "rgba(255, 0, 0, 0.9)";
+        },
+        indexEvents: function () {
+          for (let i = 0; i < this.index.length; i++) {
+            this.index[i].addEventListener(
+              "mouseover",
+              this.manualEvent.bind(this, i)
+            );
+          }
+        },
+        manualEvent: function (i) {
+          if (parseFloat(this.show[this.now].style["left"]) == 0) {
+            window.clearInterval(this.timer);
+            this.differ = i - this.now; //console.log(this.differ)
+            if (this.differ > 0) {
+              this.beginTimer(this.directions, 1, 5);
+            } else if (this.differ < 0) {
+              this.beginTimer(this.reversedirection, 1, 5);
+            }
+          }
+        },
+      };
+      new Carousel(document.querySelector(".banner_warpper"));
+    </script>
+  </body>
+</html>

@@ -1,11 +1,12 @@
-/*
- * @Author: Min
- * @Date: 2020-06-15 10:48:16
- * @LastEditors: Min
- * @LastEditTime: 2020-06-17 17:15:34
- * @Description: file content
- */
-
+/* ============================================================================= 
+#
+# Author: Min
+# Date: 2020-06-19 10:50:04
+# LastEditors: Min
+# LastEditTime: 2020-06-19 11:02:59
+# Description:
+#
+============================================================================= */
 import React from "react";
 import { HashRouter } from "react-router-dom";
 import routes from "./router/index";

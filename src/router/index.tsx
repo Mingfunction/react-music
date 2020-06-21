@@ -1,3 +1,12 @@
+/* ============================================================================= 
+#
+# Author: Min
+# Date: 2020-06-19 10:50:04
+# LastEditors: Min
+# LastEditTime: 2020-06-19 11:04:16
+# Description: 路由管理
+#
+============================================================================= */
 import React, { Suspense, lazy } from "react";
 import { Redirect } from "react-router-dom";
 

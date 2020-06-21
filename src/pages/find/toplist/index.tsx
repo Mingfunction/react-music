@@ -10,7 +10,7 @@
 import React from "react";
 
 function Toplist() {
-  return <div></div>;
+  return <div>1</div>;
 }
 
 export default Toplist;
